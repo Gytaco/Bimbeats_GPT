@@ -66,7 +66,7 @@ def search(query_text):
     }
 
     fields = ["title", "body_content", "url"]
-    index = 'search-elastic-docs'
+    index = 'search-test-docs'
     resp = es.search(index=index,
                      query=query,
                      knn=knn,
@@ -97,7 +97,7 @@ def chat_gpt(prompt, model="gpt-3.5-turbo", max_tokens=1024, max_context_tokens=
     return response["choices"][0]["message"]["content"]
 
 
-st.title("ElasticDocs GPT")
+st.title("Bimbeats GPT")
 
 # Main chat form
 with st.form("chat_form"):
