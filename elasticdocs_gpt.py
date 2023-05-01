@@ -115,4 +115,6 @@ if submit_button:
         st.write(f"ChatGPT: {answer.strip()}")
     else:
         title_name = f"{resp} Dashboard"
-        st.write(f"ChatGPT: {answer.strip()}\n\nDashboard: [{title_name}](https://snapshot.kb.us-east-2.aws.elastic-cloud.com:9243/app/dashboards#/view/{url}?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-90d%2Fd,to:now)))")
+        iframe_html = f"https://snapshot.kb.us-east-2.aws.elastic-cloud.com:9243/app/dashboards#/view/{url}?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-90d%2Fd,to:now))"
+        st.write(f"ChatGPT: {answer.strip()}\n\nDashboard: [{title_name}](iframe_html)")
+        st.html(iframe_html)
