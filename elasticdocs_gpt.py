@@ -114,5 +114,5 @@ if submit_button:
     if negResponse in answer:
         st.write(f"ChatGPT: {answer.strip()}")
     else:
-        title_name = {title}
+        title_name = f"{title} Dashboard"
         st.write(f"ChatGPT: {answer.strip()}\n\nDashboard: [title_name](https://snapshot.kb.us-east-2.aws.elastic-cloud.com:9243/app/dashboards#/view/{url}?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-90d%2Fd,to:now)))")
