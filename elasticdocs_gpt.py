@@ -75,7 +75,7 @@ def search(query_text):
                      source=False)
 
     body = resp['hits']['hits'][0]['fields']['title'][0]
-    url = resp['hits']['hits'][0]['fields']['url'][0]
+    url = resp['hits']['hits'][0]['fields']['dashboardId'][0]
 
     return body, url
 
