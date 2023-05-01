@@ -106,10 +106,10 @@ with st.form("chat_form"):
     submit_button = st.form_submit_button("Send")
 
 # Generate and display response on form submission
-negResponse = "I'm unable to answer the question based on the information I have from Elastic Docs."
+negResponse = "I'm unable to answer the question based on the information I have from Bimbeats."
 if submit_button:
     resp, url = search(query)
-    prompt = f"Answer this question: {query}\nUsing only the information from this Elastic Doc: {resp}\nIf the answer is not contained in the supplied doc reply '{negResponse}' and nothing else"
+    prompt = f"Answer this question: {query}\nUsing only the information from this Bimbeats Doc: {resp}\nIf the answer is not contained in the supplied doc reply '{negResponse}' and nothing else"
     answer = chat_gpt(prompt)
     
     if negResponse in answer:
