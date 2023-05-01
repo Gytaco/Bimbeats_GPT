@@ -117,6 +117,6 @@ if submit_button:
     else:
         title_name = f"{resp} Dashboard"
         html = f"https://snapshot.kb.us-east-2.aws.elastic-cloud.com:9243/app/dashboards#/view/{url}?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))"
-        iframe_html = f"https://snapshot.kb.us-east-2.aws.elastic-cloud.com:9243/app/dashboards#/view/{url}?embed=true&_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()"
+        # iframe_html = f"https://snapshot.kb.us-east-2.aws.elastic-cloud.com:9243/app/dashboards#/view/{url}?embed=true&_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()"
         st.write(f"ChatGPT: {answer.strip()}\n\nDashboard: [{title_name}]({html})")
-        components.iframe(iframe_html, width=600, height=800, scrolling=True)
+        # components.iframe(iframe_html, width=600, height=800, scrolling=True)
