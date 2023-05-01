@@ -65,7 +65,7 @@ def search(query_text):
         "boost": 24
     }
 
-    fields = ["title", "body_content", "url"]
+    fields = ["title", "dashboardId"]
     index = 'dashboard_01'
     resp = es.search(index=index,
                      query=query,
@@ -74,7 +74,7 @@ def search(query_text):
                      size=1,
                      source=False)
 
-    body = resp['hits']['hits'][0]['fields']['body_content'][0]
+    body = resp['hits']['hits'][0]['fields']['title'][0]
     url = resp['hits']['hits'][0]['fields']['url'][0]
 
     return body, url
@@ -114,4 +114,4 @@ if submit_button:
     if negResponse in answer:
         st.write(f"ChatGPT: {answer.strip()}")
     else:
-        st.write(f"ChatGPT: {answer.strip()}\n\nDocs: {url}")
+        st.write(f"ChatGPT: {answer.strip()}\n\nDocs: https://snapshot.kb.us-east-2.aws.elastic-cloud.com:9243/app/dashboards#/view/{url}?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-90d%2Fd,to:now))")
