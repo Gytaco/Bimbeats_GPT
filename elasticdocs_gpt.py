@@ -66,7 +66,7 @@ def search(query_text):
     }
 
     fields = ["title", "body_content", "url"]
-    index = 'search-test-docs'
+    index = 'dashboard_01'
     resp = es.search(index=index,
                      query=query,
                      knn=knn,
