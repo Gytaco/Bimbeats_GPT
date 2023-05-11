@@ -66,7 +66,7 @@ def search(query_text):
         "boost": 24
     }
 
-    fields = ["title", "body"]
+    fields = ["title", "body_content", "url"]
     index = 'search-test-docs'
     resp = es.search(index=index,
                      query=query,
@@ -75,8 +75,8 @@ def search(query_text):
                      size=1,
                      source=False)
 
-    body = resp['hits']['hits'][0]['fields']['body'][0]
-    url = resp['hits']['hits'][0]['fields']['title'][0]
+    body = resp['hits']['hits'][0]['fields']['body_content'][0]
+    url = resp['hits']['hits'][0]['fields']['url'][0]
 
     return body, url
 
@@ -106,17 +106,13 @@ with st.form("chat_form"):
     submit_button = st.form_submit_button("Send")
 
 # Generate and display response on form submission
-negResponse = "I'm unable to answer the question based on the information I have from Bimbeats."
+negResponse = "I'm unable to answer the question based on the information I have from Elastic Docs."
 if submit_button:
     resp, url = search(query)
-    prompt = f"Answer this question: {query}\nUsing only the information from this Bimbeats Doc: {resp}\nIf the answer is not contained in the supplied doc reply '{negResponse}' and nothing else"
+    prompt = f"Answer this question: {query}\nUsing only the information from this Elastic Doc: {resp}\nIf the answer is not contained in the supplied doc reply '{negResponse}' and nothing else"
     answer = chat_gpt(prompt)
     
     if negResponse in answer:
         st.write(f"ChatGPT: {answer.strip()}")
     else:
-        title_name = f"{resp} Dashboard"
-        # html = f"https://snapshot.kb.us-east-2.aws.elastic-cloud.com:9243/app/dashboards#/view/{url}?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))"
-        # iframe_html = f"https://snapshot.kb.us-east-2.aws.elastic-cloud.com:9243/app/dashboards#/view/{url}?embed=true&_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()"
-        # st.write(f"ChatGPT: {answer.strip()}\n\nDashboard: [{title_name}]({html})")
-        # components.iframe(iframe_html, width=600, height=800, scrolling=True)
+        st.write(f"ChatGPT: {answer.strip()}\n\nDocs: {url}")
